@@ -2,73 +2,86 @@ import {VscBold} from 'react-icons/vsc'
 import {GoItalic} from 'react-icons/go'
 import {AiOutlineUnderline} from 'react-icons/ai'
 import {Component} from 'react'
-import {BoldBtn, ItalicBtn, UnderlineBtn, TextArea} from './styledComponent'
+import {
+  AppContainer,
+  EditorContainer,
+  SideImage,
+  Heading,
+  Toolbar,
+  ButtonItem,
+  BoldBtn,
+  ItalicBtn,
+  UnderlineBtn,
+  TextArea,
+} from './styledComponent'
+
 class TextEditor extends Component {
-state = {bold: false, italic: false, underline: false}
-changeBold = () => {
+  state = {bold: false, italic: false, underline: false}
+
+  changeBold = () => {
+    this.setState(prevState => ({bold: !prevState.bold}))
+  }
+
+  changeItalic = () => {
+    this.setState(prevState => ({italic: !prevState.italic}))
+  }
+
+  changeUnderline = () => {
+    this.setState(prevState => ({underline: !prevState.underline}))
+  }
+
+  render() {
+    const {bold, italic, underline} = this.state
+
+    return (
+      <AppContainer>
+        <SideImage
+          src="https://assets.ccbp.in/frontend/react-js/text-editor-img.png"
+          alt="text editor"
+        />
+        <EditorContainer>
+          <Heading>Text Editor</Heading>
+          <Toolbar>
+            <ButtonItem>
+              <BoldBtn
+                onClick={this.changeBold}
+                active={bold}
+                data-testid="bold"
+              >
+                <VscBold size={20} />
+              </BoldBtn>
+            </ButtonItem>
+            <ButtonItem>
+              <ItalicBtn
+                onClick={this.changeItalic}
+                active={italic}
+                data-testid="italic"
+              >
+                <GoItalic size={20} />
+              </ItalicBtn>
+            </ButtonItem>
+            <ButtonItem>
+              <UnderlineBtn
+                onClick={this.changeUnderline}
+                active={underline}
+                data-testid="underline"
+              >
+                <AiOutlineUnderline size={20} />
+              </UnderlineBtn>
+            </ButtonItem>
+          </Toolbar>
+          <TextArea
+            rows="15"
+            cols="60"
+            activeBold={bold}
+            activeItalic={italic}
+            activeUnderline={underline}
+            placeholder="Start typing here..."
+          />
+        </EditorContainer>
+      </AppContainer>
+    )
+  }
 }
-this.setState(prevState => ({bold: !prevState.bold}))
-changeItalic = () => {
-this.setState(prevState => ({italic: !prevState.italic}))
-}
-changeUnderline = () => {
-this.setState(prevState => ({underline: !prevState.underline}))
-}
-render() {
-const {bold, italic, underline} = this.state
-return (
-<div>
-<div>
-<div>
-<h1>Text Editor</h1>
-<img
-src="https://assets.ccbp.in/frontend/react-js/text-editor-img.png"
-alt="text editor"
-/>
-</div>
-<div>
-<ul>
-<li key="1">
-<BoldBtn
-type="button"
-onClick={this.changeBold}
-data-testid="bold"
-active={bold}
->
-<VscBold size={25} />
-</BoldBtn>
-</li>
-<li key="2">
-<ItalicBtn
-type="button"
-active={italic}
-onclick={this.changeItalic}
-data-testid="italic"
-<GoItalic size={25} />
-</ItalicBtn>
-</li>
-<li key="3">
-<UnderlineBtn
-type="button"
-active={underline}
-onclick={this.changeUnderline}
-data-testid="underline"
-<AiOutlineUnderline size={25} />
-</UnderlineBtn>
-</li>
-</ul>
-<TextArea
-rows="20"
-cols="100"
-activeBold={bold}
-activeItalic={italic}
-activeUnderline={underline}
-/>
-</div>
-</div>
-</div>
-}
+
 export default TextEditor
-
-
-
