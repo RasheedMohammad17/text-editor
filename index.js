@@ -38,5 +38,37 @@ active={bold}
 <VscBold size={25} />
 </BoldBtn>
 </li>
+<li key="2">
+<ItalicBtn
+type="button"
+active={italic}
+onclick={this.changeItalic}
+data-testid="italic"
+<GoItalic size={25} />
+</ItalicBtn>
+</li>
+<li key="3">
+<UnderlineBtn
+type="button"
+active={underline}
+onclick={this.changeUnderline}
+data-testid="underline"
+<AiOutlineUnderline size={25} />
+</UnderlineBtn>
+</li>
 </ul>
+<TextArea
+rows="20"
+cols="100"
+activeBold={bold}
+activeItalic={italic}
+activeUnderline={underline}
+/>
 </div>
+</div>
+</div>
+}
+export default TextEditor
+
+
+
